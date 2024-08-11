@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    color: #343a40;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Elements */
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.form-control, .form-select {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+button {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Action and Expected Result Containers */
+#actionsContainer, #expectedResultsContainer {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+#addActionBtn, #addExpectedResultBtn {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+#addActionBtn:hover, #addExpectedResultBtn:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Additional Spacing */
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+/* Small Adjustments */
+input[type="text"], textarea, select {
+    padding: 10px;
+}
