@@ -1,0 +1,681 @@
+{
+	"info": {
+		"_postman_id": "251d878d-4aae-4c02-ab50-781711ea671d",
+		"name": "Test Case Management API",
+		"description": "Postman Collection for the Test Case Management API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37596829"
+	},
+	"item": [
+		{
+			"name": "Test Suites Level 1",
+			"item": [
+				{
+					"name": "Get All Test Suites Level 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Suite Level 1 by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Suite Level 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Suite Name\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-suites",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Suite Level 1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Suite Name\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-suites/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Suite Level 1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Suites Level 2",
+			"item": [
+				{
+					"name": "Get All Test Suites Level 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites-level-2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites-level-2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Suite Level 2 by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites-level-2/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites-level-2",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Suite Level 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Suite Level 2 Name\",\n    \"level_1_id\": \"UUID\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-suites-level-2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites-level-2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Suite Level 2",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Suite Level 2 Name\",\n    \"level_1_id\": \"UUID\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-suites-level-2/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites-level-2",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Suite Level 2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-suites-level-2/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-suites-level-2",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Cases",
+			"item": [
+				{
+					"name": "Get All Test Cases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-cases",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Case by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-cases/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Case",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test Case Name\",\n    \"importance\": \"Medium\",\n    \"summary\": \"Test Case Summary\",\n    \"preconditions\": \"Preconditions for the test case\",\n    \"level_2_id\": \"UUID\",\n    \"actions\": [\n        {\n            \"id\": \"UUID\",\n            \"sequence\": 1\n        }\n    ],\n    \"expected_results\": [\n        {\n            \"id\": \"UUID\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-cases",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Case",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Test Case Name\",\n    \"importance\": \"High\",\n    \"summary\": \"Updated Test Case Summary\",\n    \"preconditions\": \"Updated Preconditions\",\n    \"level_2_id\": \"UUID\",\n    \"actions\": [\n        {\n            \"id\": \"UUID\",\n            \"sequence\": 1\n        }\n    ],\n    \"expected_results\": [\n        {\n            \"id\": \"UUID\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/test-cases/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Case",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test-cases/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actions",
+			"item": [
+				{
+					"name": "Get All Actions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/actions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"actions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Action by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/actions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"actions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Action",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Action Description\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/actions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"actions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Action",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Updated Action Description\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/actions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"actions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Action",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/actions/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"actions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expected Results",
+			"item": [
+				{
+					"name": "Get All Expected Results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/expected-results",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"expected-results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Expected Result by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/expected-results/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"expected-results",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Expected Result",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Expected Result Description\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/expected-results",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"expected-results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Expected Result",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Updated Expected Result Description\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/expected-results/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"expected-results",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Expected Result",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/expected-results/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"expected-results",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
