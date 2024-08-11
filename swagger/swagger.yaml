@@ -1,0 +1,551 @@
+openapi: 3.0.0
+info:
+  title: Test Case Management API
+  description: API documentation for managing test cases, test suites, actions, and expected results.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /api/test-suites:
+    get:
+      summary: Retrieve all test suites level 1
+      operationId: getTestSuitesLevel1
+      responses:
+        '200':
+          description: A list of test suites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestSuiteLevel1'
+    post:
+      summary: Create a new test suite level 1
+      operationId: createTestSuiteLevel1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestSuiteLevel1Input'
+      responses:
+        '201':
+          description: Created test suite
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel1'
+
+  /api/test-suites/{id}:
+    get:
+      summary: Retrieve a test suite level 1 by ID
+      operationId: getTestSuiteLevel1ById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A test suite level 1
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel1'
+    put:
+      summary: Update a test suite level 1
+      operationId: updateTestSuiteLevel1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestSuiteLevel1Input'
+      responses:
+        '200':
+          description: Updated test suite
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel1'
+    delete:
+      summary: Delete a test suite level 1
+      operationId: deleteTestSuiteLevel1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+
+  /api/test-suites-level-2:
+    get:
+      summary: Retrieve all test suites level 2
+      operationId: getTestSuitesLevel2
+      responses:
+        '200':
+          description: A list of test suites level 2
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestSuiteLevel2'
+    post:
+      summary: Create a new test suite level 2
+      operationId: createTestSuiteLevel2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestSuiteLevel2Input'
+      responses:
+        '201':
+          description: Created test suite level 2
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel2'
+
+  /api/test-suites-level-2/{id}:
+    get:
+      summary: Retrieve a test suite level 2 by ID
+      operationId: getTestSuiteLevel2ById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A test suite level 2
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel2'
+    put:
+      summary: Update a test suite level 2
+      operationId: updateTestSuiteLevel2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestSuiteLevel2Input'
+      responses:
+        '200':
+          description: Updated test suite level 2
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestSuiteLevel2'
+    delete:
+      summary: Delete a test suite level 2
+      operationId: deleteTestSuiteLevel2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+
+  /api/test-cases:
+    get:
+      summary: Retrieve all test cases with actions and expected results
+      operationId: getTestCases
+      responses:
+        '200':
+          description: A list of test cases with actions and expected results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestCaseWithActionsAndResults'
+    post:
+      summary: Create a new test case
+      operationId: createTestCase
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestCaseInput'
+      responses:
+        '201':
+          description: Created test case
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestCase'
+
+  /api/test-cases/{id}:
+    get:
+      summary: Retrieve a test case by ID
+      operationId: getTestCaseById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A test case
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestCaseWithActionsAndResults'
+    put:
+      summary: Update a test case
+      operationId: updateTestCase
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestCaseInput'
+      responses:
+        '200':
+          description: Updated test case
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestCase'
+    delete:
+      summary: Delete a test case
+      operationId: deleteTestCase
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+
+  /api/actions:
+    get:
+      summary: Retrieve all actions
+      operationId: getActions
+      responses:
+        '200':
+          description: A list of actions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestAction'
+    post:
+      summary: Create a new action
+      operationId: createAction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestActionInput'
+      responses:
+        '201':
+          description: Created action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestAction'
+
+  /api/actions/{id}:
+    get:
+      summary: Retrieve an action by ID
+      operationId: getActionById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestAction'
+    put:
+      summary: Update an action
+      operationId: updateAction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestActionInput'
+      responses:
+        '200':
+          description: Updated action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestAction'
+    delete:
+      summary: Delete an action
+      operationId: deleteAction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+
+  /api/expected-results:
+    get:
+      summary: Retrieve all expected results
+      operationId: getExpectedResults
+      responses:
+        '200':
+          description: A list of expected results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpectedResult'
+    post:
+      summary: Create a new expected result
+      operationId: createExpectedResult
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpectedResultInput'
+      responses:
+        '201':
+          description: Created expected result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectedResult'
+
+  /api/expected-results/{id}:
+    get:
+      summary: Retrieve an expected result by ID
+      operationId: getExpectedResultById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: An expected result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectedResult'
+    put:
+      summary: Update an expected result
+      operationId: updateExpectedResult
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpectedResultInput'
+      responses:
+        '200':
+          description: Updated expected result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectedResult'
+    delete:
+      summary: Delete an expected result
+      operationId: deleteExpectedResult
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No content
+
+components:
+  schemas:
+    TestSuiteLevel1:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+
+    TestSuiteLevel1Input:
+      type: object
+      properties:
+        name:
+          type: string
+
+    TestSuiteLevel2:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        level_1_id:
+          type: string
+
+    TestSuiteLevel2Input:
+      type: object
+      properties:
+        name:
+          type: string
+        level_1_id:
+          type: string
+
+    TestCase:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        importance:
+          type: string
+        summary:
+          type: string
+        preconditions:
+          type: string
+        level_2_id:
+          type: string
+
+    TestCaseInput:
+      type: object
+      properties:
+        name:
+          type: string
+        importance:
+          type: string
+        summary:
+          type: string
+        preconditions:
+          type: string
+        level_2_id:
+          type: string
+        actions:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              sequence:
+                type: integer
+        expected_results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+
+    TestCaseWithActionsAndResults:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        importance:
+          type: string
+        summary:
+          type: string
+        preconditions:
+          type: string
+        level_2_id:
+          type: string
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestAction'
+        expected_results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpectedResult'
+
+    TestAction:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+
+    TestActionInput:
+      type: object
+      properties:
+        description:
+          type: string
+
+    ExpectedResult:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+
+    ExpectedResultInput:
+      type: object
+      properties:
+        description:
+          type: string
