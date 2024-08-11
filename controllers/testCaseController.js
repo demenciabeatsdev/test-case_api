@@ -46,9 +46,13 @@ const getTestCaseById = async (req, res) => {
 
 // Crear un nuevo caso de prueba con acciones y resultados esperados
 const createTestCase = async (req, res) => {
+    const client = await pool.connect();
     const { name, importance, summary, preconditions, level_2_id, actions, expected_results } = req.body;
+
     try {
-        const result = await pool.query(
+        await client.query('BEGIN');
+
+        const result = await client.query(
             'INSERT INTO test_case (name, importance, summary, preconditions, level_2_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
             [name, importance, summary, preconditions, level_2_id]
         );
@@ -56,7 +60,7 @@ const createTestCase = async (req, res) => {
 
         if (actions && actions.length > 0) {
             for (let action of actions) {
-                await pool.query(
+                await client.query(
                     'INSERT INTO test_case_actions (test_case_id, action_id, sequence) VALUES ($1, $2, $3)',
                     [testCase.id, action.id, action.sequence]
                 );
@@ -65,36 +69,44 @@ const createTestCase = async (req, res) => {
 
         if (expected_results && expected_results.length > 0) {
             for (let result of expected_results) {
-                await pool.query(
+                await client.query(
                     'INSERT INTO test_case_expected_results (test_case_id, expected_result_id) VALUES ($1, $2)',
                     [testCase.id, result.id]
                 );
             }
         }
 
+        await client.query('COMMIT');
         res.status(201).json(testCase);
     } catch (error) {
+        await client.query('ROLLBACK');
         res.status(500).json({ error: error.message });
+    } finally {
+        client.release();
     }
 };
 
 // Actualizar un caso de prueba con acciones y resultados esperados
 const updateTestCase = async (req, res) => {
+    const client = await pool.connect();
     const { id } = req.params;
     const { name, importance, summary, preconditions, level_2_id, actions, expected_results } = req.body;
+
     try {
-        const result = await pool.query(
+        await client.query('BEGIN');
+
+        const result = await client.query(
             'UPDATE test_case SET name = $1, importance = $2, summary = $3, preconditions = $4, level_2_id = $5 WHERE id = $6 RETURNING *',
             [name, importance, summary, preconditions, level_2_id, id]
         );
         const testCase = result.rows[0];
 
-        await pool.query('DELETE FROM test_case_actions WHERE test_case_id = $1', [id]);
-        await pool.query('DELETE FROM test_case_expected_results WHERE test_case_id = $1', [id]);
+        await client.query('DELETE FROM test_case_actions WHERE test_case_id = $1', [id]);
+        await client.query('DELETE FROM test_case_expected_results WHERE test_case_id = $1', [id]);
 
         if (actions && actions.length > 0) {
             for (let action of actions) {
-                await pool.query(
+                await client.query(
                     'INSERT INTO test_case_actions (test_case_id, action_id, sequence) VALUES ($1, $2, $3)',
                     [testCase.id, action.id, action.sequence]
                 );
@@ -103,16 +115,20 @@ const updateTestCase = async (req, res) => {
 
         if (expected_results && expected_results.length > 0) {
             for (let result of expected_results) {
-                await pool.query(
+                await client.query(
                     'INSERT INTO test_case_expected_results (test_case_id, expected_result_id) VALUES ($1, $2)',
                     [testCase.id, result.id]
                 );
             }
         }
 
+        await client.query('COMMIT');
         res.json(testCase);
     } catch (error) {
+        await client.query('ROLLBACK');
         res.status(500).json({ error: error.message });
+    } finally {
+        client.release();
     }
 };
 

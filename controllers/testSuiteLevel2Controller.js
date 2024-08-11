@@ -1,9 +1,10 @@
 const pool = require('../config/database');
 
-// Obtener todas las suites de nivel 2
+// Obtener todas las suites de nivel 2 relacionadas a un nivel 1 específico
 const getTestSuitesLevel2 = async (req, res) => {
+    const { level_1_id } = req.query;
     try {
-        const result = await pool.query('SELECT * FROM test_suite_level_2');
+        const result = await pool.query('SELECT * FROM test_suite_level_2 WHERE level_1_id = $1', [level_1_id]);
         res.json(result.rows);
     } catch (error) {
         res.status(500).json({ error: error.message });

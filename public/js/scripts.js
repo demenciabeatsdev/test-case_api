@@ -13,18 +13,24 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             level1Select.addEventListener('change', function () {
-                level1Select.disabled = true;
-
                 const level1Id = this.value;
 
-                fetch(`/api/test-suites-level-2?level_1_id=${level1Id}`)
-                    .then(response => response.json())
+                fetch(`/api/test-suite-level-2?level_1_id=${level1Id}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
                     .then(data => {
                         const level2Select = document.getElementById('level2Id');
                         level2Select.innerHTML = '<option value="">Select Test Suite Level 2</option>';
                         data.forEach(suite => {
                             level2Select.innerHTML += `<option value="${suite.id}">${suite.name}</option>`;
                         });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching Test Suite Level 2:', error);
                     });
             });
         });
@@ -66,10 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const actionInput = document.getElementById(`action_${actionIndex}`);
 
             if (selectedValue) {
-                actionInput.value = '';  // Clear the input if an existing action is selected
-                actionInput.disabled = true;  // Disable input if an existing action is selected
+                actionInput.value = '';  // Limpiar el input si se selecciona una acción existente
+                actionInput.disabled = true;  // Deshabilitar input si se selecciona una acción existente
             } else {
-                actionInput.disabled = false;  // Enable input if no existing action is selected
+                actionInput.disabled = false;  // Habilitar input si no se selecciona una acción existente
             }
         });
 
@@ -105,10 +111,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             const actions = [];
+            const sequences = new Set();
             for (let i = 0; i < actionCounter; i++) {
                 const actionSelect = document.getElementById(`actionSelect_${i}`).value;
                 const actionDescription = document.getElementById(`action_${i}`).value.trim();
                 const sequence = document.getElementById(`sequence_${i}`).value.trim();
+
+                if (sequences.has(sequence)) {
+                    throw new Error('Duplicate sequence detected.');
+                }
+                sequences.add(sequence);
 
                 let actionId = actionSelect;
 
@@ -182,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
             level1Select.disabled = false;  // Habilitar el dropdown de nuevo si es necesario para crear otro test case
         } catch (error) {
             console.error('Error:', error);
-            alert(`Error: ${error.message}`);
+            showErrorModal(error.message);
             document.getElementById('testCaseForm').reset();
             actionCounter = 0;
             expectedResultCounter = 0;
@@ -191,4 +203,31 @@ document.addEventListener('DOMContentLoaded', function () {
             level1Select.disabled = false;  // Habilitar el dropdown de nuevo si es necesario para crear otro test case
         }
     });
+
+    function showErrorModal(errorMessage) {
+        const errorModal = document.createElement('div');
+        errorModal.classList.add('modal', 'fade');
+        errorModal.tabIndex = -1;
+        errorModal.setAttribute('role', 'dialog');
+        errorModal.innerHTML = `
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>${errorMessage}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(errorModal);
+        $(errorModal).modal('show');
+    }
 });

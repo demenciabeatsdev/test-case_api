@@ -25,6 +25,18 @@ const getActionById = async (req, res) => {
 const createAction = async (req, res) => {
     const { description } = req.body;
     try {
+        // Verificar si la acción ya existe
+        const existingAction = await pool.query(
+            'SELECT * FROM test_actions WHERE description = $1',
+            [description]
+        );
+
+        if (existingAction.rows.length > 0) {
+            // Si la acción ya existe, devolverla en lugar de crear una nueva
+            return res.status(200).json(existingAction.rows[0]);
+        }
+
+        // Si no existe, crear una nueva
         const result = await pool.query(
             'INSERT INTO test_actions (description) VALUES ($1) RETURNING *',
             [description]
